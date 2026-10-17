@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#11100d">
+<title>SRK Tailor | Premium Tailoring</title>
+<style>
+:root {
+  --bg: #11100d;
+  --panel: #1c1a15;
+  --gold: #d9b766;
+  --text: #f8f4e8;
+  --muted: #bcb5a4;
+  --border: #45402f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 6%;
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+button {
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 12px 17px;
+  background: var(--gold);
+  color: #17130a;
+  font-weight: bold;
+}
+button.outline {
+  color: var(--gold);
+  background: transparent;
+}
+main { max-width: 1000px; margin: auto; padding: 24px; }
+.hero { padding: 48px 0 38px; }
+.eyebrow { color: var(--gold); letter-spacing: 4px; font-size: 12px; }
+h1 { font-size: clamp(42px, 9vw, 72px); margin: 18px 0; line-height: 1.05; }
+.gold { color: var(--gold); }
+p { color: var(--muted); line-height: 1.7; }
+.hero p { max-width: 520px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 25px 0;
+}
+.card {
+  padding: 23px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.card h3 { color: var(--gold); }
+.symbol { font-size: 27px; }
+section[hidden] { display: none; }
+label { display: block; margin-top: 14px; color: var(--muted); }
+input, select {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 14px;
+  background: #11100d;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+}
+form button { margin-top: 18px; width: 100%; }
+.notice { font-size: 13px; }
+footer {
+  padding: 26px;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+@media(max-width: 560px) {
+  main { padding: 20px; }
+  .grid { grid-template-columns: 1fr; }
+  .hero { padding-top: 30px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">SRK TAILOR</div>
+  <button class="outline" onclick="openLogin()">Login</button>
+</header>
+
+<main>
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">PRECISION · STYLE · CRAFT</div>
+      <h1>Your Style.<br><span class="gold">Our Craft.</span></h1>
+      <p>Premium tailoring, personalised measurements,
+      order tracking and convenient billing — all in one place.</p>
+      <div class="actions">
+        <button onclick="openLogin()">Customer Login</button>
+        <button class="outline" onclick="openLogin()">Owner Login</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="symbol">✂</div>
+        <h3>Custom Tailoring</h3>
+        <p>Keep shirt, pant, kurta and other garment measurements organised.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">◷</div>
+        <h3>Order Tracking</h3>
+        <p>Track pending, stitching, ready and delivered orders.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">₹</div>
+        <h3>Smart Billing</h3>
+        <p>Manage order totals, advances and outstanding balances.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">◆</div>
+        <h3>Online Payments</h3>
+        <p>Cashfree payment checkout will be connected after secure setup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="login" class="card" hidden>
+    <button class="outline" onclick="goHome()">← Back</button>
+    <h2>Welcome to SRK Tailor</h2>
+    <p>Sign in to your account.</p>
+    <form id="loginForm">
+      <label for="accountType">Account type</label>
+      <select id="accountType">
+        <option value="customer">Customer</option>
+        <option value="owner">Owner</option>
+      </select>
+      <label for="email">Email address</label>
+      <input id="email" type="email" placeholder="you@example.com" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" minlength="6"
+        placeholder="Enter password" required>
+      <button type="submit">Sign In</button>
+    </form>
+    <p id="status" class="notice">
+      This is a design preview. Real authentication is not connected yet.
+    </p>
+  </section>
+</main>
+
+<footer>SRK TAILOR · Premium Tailoring Experience</footer>
+
+<script>
+function openLogin() {
+  document.getElementById("home").hidden = true;
+  document.getElementById("login").hidden = false;
+}
+function goHome() {
+  document.getElementById("login").hidden = true;
+  document.getElementById("home").hidden = false;
+}
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  document.getElementById("status").textContent =
+    "Design preview only. Firebase authentication must be configured before login.";
+});
+</script>
+</body>
+</html>
